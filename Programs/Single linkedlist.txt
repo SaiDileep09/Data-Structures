@@ -1,0 +1,73 @@
+// Single linkedlist
+--------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define a structure for a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to insert a node at the end of the linked list
+void insert(struct Node** head_ref, int new_data) {
+    // Allocate memory for new node
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    // Set data for the new node
+    new_node->data = new_data;
+    new_node->next = NULL;
+    // If the linked list is empty, set the new node as the head
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+    // Traverse to the last node
+    struct Node* last = *head_ref;
+    while (last->next != NULL)
+        last = last->next;
+    // Insert the new node at the end
+    last->next = new_node;
+}
+
+// Function to find the middle of the linked list
+void findMiddle(struct Node* head) {
+    struct Node *slow_ptr = head, *fast_ptr = head;
+    if (head != NULL) {
+        while (fast_ptr != NULL && fast_ptr->next != NULL) {
+            fast_ptr = fast_ptr->next->next;
+            slow_ptr = slow_ptr->next;
+        }
+        printf("The middle element is %d\n", slow_ptr->data);
+    }
+}
+
+// Function to print the linked list
+void printList(struct Node* node) {
+    while (node != NULL) {
+        printf("%d ", node->data);
+        node = node->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    int n, data;
+    
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+    
+    printf("Enter the data for each node:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &data);
+        insert(&head, data);
+    }
+    
+    printf("Linked List: ");
+    printList(head);
+    
+    findMiddle(head);
+    
+    return 0;
+}

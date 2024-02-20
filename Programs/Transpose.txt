@@ -1,0 +1,51 @@
+// Transpose of a matrix
+------------------------
+
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+// Function to transpose a matrix
+void transpose(int mat[ROWS][COLS]) {
+    int temp;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = i + 1; j < COLS; j++) {
+            // Swap element at position (i, j) with element at position (j, i)
+            temp = mat[i][j];
+            mat[i][j] = mat[j][i];
+            mat[j][i] = temp;
+        }
+    }
+}
+
+// Function to print a matrix
+void printMatrix(int mat[ROWS][COLS]) {
+    printf("Transposed Matrix:\n");
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matrix[ROWS][COLS];
+
+    // Input matrix elements
+    printf("Enter elements of %d x %d matrix:\n", ROWS, COLS);
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Transpose the matrix
+    transpose(matrix);
+
+    // Print the transposed matrix
+    printMatrix(matrix);
+
+    return 0;
+}

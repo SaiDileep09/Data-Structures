@@ -1,0 +1,14 @@
+// To display n even natural numbers and their sum.
+
+#include<stdio.h>
+main(){
+	int n,i,sum=0;
+	printf("Enter n : ");
+	scanf("%d",&n);
+	for(i=1;i<=n;i++){
+		int even_number=2*i;
+		printf("\n%d",even_number);
+		sum=sum+even_number;
+	}
+	printf("\nSum is : %d",sum);
+}
